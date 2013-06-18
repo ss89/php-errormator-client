@@ -14,6 +14,7 @@ class ErrormatorClient
     public $apiKey;
     public $debug = false;
     private $apiVersion = "0.3";
+    private $client = "php-ss89";
 
     public function __construct($data)
     {
@@ -49,7 +50,7 @@ class ErrormatorClient
 //      403 Forbidden = API Key not valid
         array(
             array(
-                "client" => "php-ss89",
+                "client" => $this->client,
                 "log_level" => "INFO",
                 "message" => "Testing API Key",
                 "server" => $_SERVER["HTTP_HOST"],
@@ -102,6 +103,10 @@ class ErrormatorClient
                     return false;
                 }
             }
+            if(!isset($data[0]['client']))
+            {
+                $data[0]['client']=$this->client;
+            }
             if ($this->scheme)
             {
                 $return = $this->sendCurlRequest($this->scheme . "://api.errormator.com/api/slow_reports?protocol_version=" . $this->apiVersion, $data);
@@ -131,6 +136,10 @@ class ErrormatorClient
                 {
                     return false;
                 }
+            }
+            if(!isset($data[0]['client']))
+            {
+                $data[0]['client']=$this->client;
             }
             if ($this->scheme)
             {
@@ -183,6 +192,15 @@ class ErrormatorClient
         return $this->apiVersion = $version;
     }
 
+    public function getClient()
+    {
+        return $this->client;
+    }
+    
+    public function setClient($name)
+    {
+        return $this->client = $name;
+    }
 }
 
 ?>

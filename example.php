@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
     <head>
         <title>Example for PHP Errormator Client usage</title>
@@ -10,10 +11,11 @@
         </style>
     </head>
     <body>
+        <h1>PHP Errormator Client</h1>
         <form method="POST" action="">
             <p>You can test the PHP Errormator Client by pressing the button below.</p>
             <p>please keep in mind to create an errormator.com account first, then to add an application and to obtain its API Key.</p>
-            <p>After you did that, change the value of the $api_key.</p>
+            <p>After you did that, change the value of the $api_key in this script.</p>
             <?php
             $api_key = "12345678901234567890123456789012";
             if ($api_key == "12345678901234567890123456789012")
@@ -33,24 +35,23 @@ if (isset($_POST) && isset($_POST['do_api_request']))
 {
     $opts = array("scheme" => "https", "api_key" => $api_key, "debug" => false);
     $client = new ErrormatorClient($opts);
-    if($client->__checkApiKey()===false)
+    if($client->checkApiKey()===false)
     {
         die('<p class="error">API KEY NOT VALID</p>');
     }
     $data = array(
         array(
-            "url" => "http://remac.ath.cx/errormator-test",
-            "server" => "remac.ath.cx",
+            "url" => "http://127.0.0.1/errormator-test",
+            "server" => "127.0.0.1",
             "report_details" => array(
                 array(
                     "start_time" => date("Y-m-d\TH:i:s.u"),
                     "end_time" => date("Y-m-d\TH:i:s.u"),
                     "username" => "myUserName",
-                    "url" => "http://remac.ath.cx/errormator-test-url",
+                    "url" => "http://127.0.0.1/errormator-test-url",
                     "ip" => "127.0.0.1",
                     "user_agent" => "Firefox 1",
                     "message" => "my custom message",
-                    "request_id" => uniqid(),
                     "request" => array("field1" => "value1", "field2" => "value2"),
                     "slow_calls" => array(
                         array(
@@ -72,24 +73,22 @@ if (isset($_POST) && isset($_POST['do_api_request']))
     unset($data);
     $data = array(
         array(
-            "errormator.client" => "php",
-            "traceback" => "my traceback",
+            "traceback" => "my traceback as string",
             "priority" => 1,
             "error_type" => "OMG ValueError happened",
             "occurences" => 2,
             "http_status" => 500,
             "errormator.client" => "php",
             "errormator.client" => "php",
-            "server" => "remac.ath.cx",
+            "server" => "127.0.0.1",
             "report_details" => array(
                 array(
                     "start_time" => date("Y-m-d\TH:i:s.u"),
                     "username" => "myUserName",
-                    "url" => "http://remac.ath.cx/errormator-test-url",
+                    "url" => "http://127.0.0.1/errormator-test-url",
                     "ip" => "127.0.0.1",
                     "user_agent" => "Firefox blah",
                     "message" => "my custom message",
-                    "request_id" => uniqid(),
                     "request" => array(
                         "REQUEST_METHOD" => "GET", 
                         "PATH_INFO" => "/FOO/BAR", 
@@ -111,19 +110,19 @@ if (isset($_POST) && isset($_POST['do_api_request']))
                     "log_level" => "INFO",
                     "message" => "OMG ValueINFO happened",
                     "name" => "php.namespace.indicator",
-                    "request_id" => uniqid()
+                    "server" => "127.0.0.1",
                 ),
                 array(
                     "log_level" => "WARN",
                     "message" => "OMG ValueWARN happened",
                     "name" => "php.namespace.indicator",
-                    "request_id" => uniqid()
+                    "server" => "127.0.0.1",
                 ),
                 array(
                     "log_level" => "ERROR",
                     "message" => "OMG ValueERROR happened",
                     "name" => "php.namespace.indicator",
-                    "request_id" => uniqid()
+                    "server" => "127.0.0.1",
                 )
             )
     ;
