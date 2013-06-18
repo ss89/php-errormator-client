@@ -10,13 +10,13 @@ class ErrormatorClient
 {
 
     public $curl;
-    public $scheme;
+    public $scheme="https";
     public $apiKey;
     public $debug = false;
     private $apiVersion = "0.3";
     private $client = "php-ss89";
 
-    public function __construct($data)
+    public function __construct($data=array())
     {
         $check = $this->checkPrerequisites();
         if (!$check)
@@ -28,13 +28,11 @@ class ErrormatorClient
 
     private function setDefaultSettings($data)
     {
-        $this->scheme = $data['scheme'];
-        $this->apiKey = $data['api_key'];
-        $this->curl = curl_init();
-        if (isset($data['debug']) && $data['debug'] === true)
+        foreach($data as $key => $value)
         {
-            $this->debug = true;
+            $this->{$key}=$value;
         }
+        $this->curl = curl_init();
         curl_setopt($this->curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'X-errormator-api-key: ' . $this->apiKey));
         curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->curl, CURLOPT_POST, true);
@@ -48,7 +46,7 @@ class ErrormatorClient
     public function checkApiKey()
     {
 //      403 Forbidden = API Key not valid
-        array(
+        $data=array(
             array(
                 "client" => $this->client,
                 "log_level" => "INFO",

@@ -1,13 +1,13 @@
 php-errormator-client
 =====================
 
-PHP Client for errormator.com - helps you track errors in your web apps
+PHP Client for errormator.com - helps you track errors in your web and cli apps
 
-you can easily add the php-errormator-client to your app by doing the following:
+you can easily add the php-errormator-client to your php app by doing the following:
 
 ~~~
 require 'ErrormatorClient.php';
-$opts = array("scheme" => "https", "api_key" => $api_key, "debug" => false);
+$opts = array("apiKey" => $api_key);
 $client = new ErrormatorClient($opts);
 ~~~
 
@@ -108,3 +108,6 @@ here you already see how you send more than 1 log
 Using cakePHP?
 Try my AppError and AppLog class for the php-errormator-client in the subfolder cakePHP.
 Here is how to set it up [cakePHP set up errorhandlers](http://book.cakephp.org/2.0/en/development/errors.html)
+
+Using no Framework?
+You're welcome too to look at noFramework\example.php and noFramework\example2.php :) 

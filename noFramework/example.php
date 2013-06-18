@@ -18,8 +18,7 @@
             <p>After you did that, change the value of the $api_key in this script.</p>
             <?php
             $api_key = "12345678901234567890123456789012";
-            if ($api_key == "12345678901234567890123456789012")
-            {
+            if ($api_key == "12345678901234567890123456789012") {
                 ?>
                 <p class="error">YOU HAVE NOT CHANGED YOUR API KEY YET</p>
                 <?php
@@ -30,13 +29,11 @@
     </body>
 </html>
 <?php
-require 'ErrormatorClient.php';
-if (isset($_POST) && isset($_POST['do_api_request']))
-{
-    $opts = array("scheme" => "https", "api_key" => $api_key, "debug" => false);
+if (isset($_POST) && isset($_POST['do_api_request'])) {
+    require '../ErrormatorClient.php';
+    $opts = array("scheme" => "https", "apiKey" => $api_key, "debug" => false);
     $client = new ErrormatorClient($opts);
-    if($client->checkApiKey()===false)
-    {
+    if ($client->checkApiKey() === false) {
         die('<p class="error">API KEY NOT VALID</p>');
     }
     $data = array(
@@ -78,8 +75,6 @@ if (isset($_POST) && isset($_POST['do_api_request']))
             "error_type" => "OMG ValueError happened",
             "occurences" => 2,
             "http_status" => 500,
-            "errormator.client" => "php",
-            "errormator.client" => "php",
             "server" => "127.0.0.1",
             "report_details" => array(
                 array(
@@ -90,8 +85,8 @@ if (isset($_POST) && isset($_POST['do_api_request']))
                     "user_agent" => "Firefox blah",
                     "message" => "my custom message",
                     "request" => array(
-                        "REQUEST_METHOD" => "GET", 
-                        "PATH_INFO" => "/FOO/BAR", 
+                        "REQUEST_METHOD" => "GET",
+                        "PATH_INFO" => "/FOO/BAR",
                         "POST" => array(
                             "field1" => "value1"
                         )
@@ -104,28 +99,26 @@ if (isset($_POST) && isset($_POST['do_api_request']))
     echo $ret;
     echo "<br>";
     unset($data);
-    $data =
-            array(
-                array(
-                    "log_level" => "INFO",
-                    "message" => "OMG ValueINFO happened",
-                    "name" => "php.namespace.indicator",
-                    "server" => "127.0.0.1",
-                ),
-                array(
-                    "log_level" => "WARN",
-                    "message" => "OMG ValueWARN happened",
-                    "name" => "php.namespace.indicator",
-                    "server" => "127.0.0.1",
-                ),
-                array(
-                    "log_level" => "ERROR",
-                    "message" => "OMG ValueERROR happened",
-                    "name" => "php.namespace.indicator",
-                    "server" => "127.0.0.1",
-                )
-            )
-    ;
+    $data = array(
+        array(
+            "log_level" => "INFO",
+            "message" => "OMG ValueINFO happened",
+            "name" => "php.namespace.indicator",
+            "server" => "127.0.0.1",
+        ),
+        array(
+            "log_level" => "WARN",
+            "message" => "OMG ValueWARN happened",
+            "name" => "php.namespace.indicator",
+            "server" => "127.0.0.1",
+        ),
+        array(
+            "log_level" => "ERROR",
+            "message" => "OMG ValueERROR happened",
+            "name" => "php.namespace.indicator",
+            "server" => "127.0.0.1",
+        )
+    );
     $ret = $client->log($data);
     echo $ret;
 }
