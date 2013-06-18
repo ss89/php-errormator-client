@@ -2,7 +2,7 @@
 
 /**
  * Errormator Abstraction Class 
- * It uses CURL extension of PHP, make sure to enable it first OR catch the CurlNotFound Exception
+ * It uses CURL extension of PHP, make sure to enable it first OR catch the Exception
  *
  * @author strussi
  */
