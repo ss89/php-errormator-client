@@ -1,4 +1,6 @@
 <?php
+require '../vendor/autoload.php';
+
 /**
  * From http://php.net/manual/en/function.set-error-handler.php
  */

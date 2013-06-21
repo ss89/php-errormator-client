@@ -6,7 +6,6 @@ namespace ErrormatorClient;
  *
  * @author ss89
  */
-require_once 'UnresolvedDependenciesException.php';
 class ErrormatorClient
 {
 
