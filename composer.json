@@ -6,7 +6,7 @@
     "keywords": ["error", "errormator"],
     "homepage": "https://github.com/ss89/php-errormator-client",
     "require": {
-        "php": ">=5.3.0",
+        "php": ">=5.3.0"
     },
     "authors": [
         {
