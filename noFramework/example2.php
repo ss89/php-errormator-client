@@ -3,13 +3,13 @@
  * From http://php.net/manual/en/function.set-error-handler.php
  */
 
-require '../ErrormatorClient.php';
+require '../ErrormatorClient/ErrormatorClient.php';
 function myErrorHandler($errno, $errstr, $errfile, $errline) {
     if (!(error_reporting() & $errno)) {
         // This error code is not included in error_reporting
         return;
     }
-    $client = new ErrormatorClient(array("apiKey" => "12345678901234567890123456789012"));
+    $client = new ErrormatorClient\ErrormatorClient(array("apiKey" => "12345678901234567890123456789012"));
     //in error case
     $data = array(
         array(

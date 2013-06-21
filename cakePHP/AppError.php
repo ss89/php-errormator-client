@@ -7,7 +7,7 @@
  * Time: 09:38
  * To change this template use File | Settings | File Templates.
  */
-App::uses("ErrormatorClient", "Vendor/php-errormator-client");
+App::uses("ErrormatorClient", "Vendor/php-errormator-client/ErrormatorClient");
 App::uses("AuthComponent", "Controller/Component");
 
 class AppError
@@ -15,7 +15,7 @@ class AppError
     public static function handleError($code, $description, $file = null, $line = null, $context = null)
     {
         $options = array("scheme" => "https", "api_key" => "554e4ecc3a5c42f0b5b2ef1b9c3047cc", "debug" => false);
-        $errormatorClient = new ErrormatorClient($options);
+        $errormatorClient = new ErrormatorClient\ErrormatorClient($options);
         $username = AuthComponent::user("username");
         if (empty($username))
         {
@@ -63,7 +63,7 @@ class AppError
     public static function handleException(Exception $exception)
     {
         $options = array("scheme" => "https", "api_key" => "554e4ecc3a5c42f0b5b2ef1b9c3047cc", "debug" => false);
-        $errormatorClient = new ErrormatorClient($options);
+        $errormatorClient = new ErrormatorClient\ErrormatorClient($options);
         $username = AuthComponent::user("username");
         if (empty($username))
         {

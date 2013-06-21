@@ -30,9 +30,9 @@
 </html>
 <?php
 if (isset($_POST) && isset($_POST['do_api_request'])) {
-    require '../ErrormatorClient.php';
+    require '../ErrormatorClient/ErrormatorClient.php';
     $opts = array("scheme" => "https", "apiKey" => $api_key, "debug" => false);
-    $client = new ErrormatorClient($opts);
+    $client = new ErrormatorClient\ErrormatorClient($opts);
     if ($client->checkApiKey() === false) {
         die('<p class="error">API KEY NOT VALID</p>');
     }
