@@ -15,7 +15,7 @@ class AppLog
 
     public static function createLogEntry()
     {
-        $options = array("scheme" => "https", "api_key" => "554e4ecc3a5c42f0b5b2ef1b9c3047cc", "debug" => false);
+        $options = array("scheme" => "https", "api_key" => "12345678901234567890123456789012", "debug" => false);
         $errormatorClient = new ErrormatorClient\ErrormatorClient($options);
         $username = AuthComponent::user("username");
         if (empty($username))
