@@ -3,15 +3,12 @@ php-errormator-client
 
 PHP Client for errormator.com - helps you track errors in your web and cli apps
 
-Please use commit 4854b1be1f for now - current commits don't work.
-=====================
-
 you can easily add the php-errormator-client to your php app by doing the following:
 
 ~~~
-require 'ErrormatorClient.php';
-$opts = array("apiKey" => $api_key);
-$client = new ErrormatorClient($opts);
+require 'ErrormatorClient\ErrormatorClient.php';
+$opts = array("apiKey" => $api_key); // where $api_key == YOUR API KEY
+$client = new ErrormatorClient\ErrormatorClient($opts);
 ~~~
 
 If you want to send a slow report, the data structure looks like:
@@ -44,6 +41,7 @@ $data = array(
             )
         )
     );
+$client->slow($data);
 ~~~
 keep in mind, that you can always post more than just one report with one request, just add another array into the first array.
 
@@ -79,6 +77,7 @@ $data = array(
             )
         )
     );
+$client->error($data);
 ~~~
 and ofcourse the same rule applies here for sending more than just one report, you add another array in the first array
 
@@ -105,6 +104,7 @@ $data =
                     "server" => "127.0.0.1",
                 )
             );
+$client->log($data);
 ~~~
 here you already see how you send more than 1 log
 
