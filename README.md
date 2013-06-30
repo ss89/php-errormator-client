@@ -3,6 +3,9 @@ php-errormator-client
 
 PHP Client for errormator.com - helps you track errors in your web and cli apps
 
+Please use commit 4854b1be1f for now - current commits don't work.
+=====================
+
 you can easily add the php-errormator-client to your php app by doing the following:
 
 ~~~
