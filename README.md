@@ -3,6 +3,9 @@ php-errormator-client
 
 PHP Client for errormator.com - helps you track errors in your web and cli apps
 
+Currently the check for curl doesn't work since the exception is not implemented correctly
+=====================
+
 you can easily add the php-errormator-client to your php app by doing the following:
 
 ~~~
