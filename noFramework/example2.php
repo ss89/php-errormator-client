@@ -11,7 +11,15 @@ function myErrorHandler($errno, $errstr, $errfile, $errline) {
         // This error code is not included in error_reporting
         return;
     }
-    $client = new ErrormatorClient\ErrormatorClient(array("apiKey" => "12345678901234567890123456789012"));
+    try
+    {
+        $client = new ErrormatorClient\ErrormatorClient(array("apiKey" => "12345678901234567890123456789012"));
+    }
+    catch (ErrormatorClient\UnresolvedDependenciesException $e)
+    {
+        echo $e->getErrorMessage();
+        exit;
+    }
     //in error case
     $data = array(
         array(
