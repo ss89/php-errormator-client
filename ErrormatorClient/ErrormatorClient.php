@@ -15,6 +15,7 @@ class ErrormatorClient
     public $debug = false;
     private $apiVersion = "0.3";
     private $client = "php-ss89";
+    private $url = "api.errormator.com/api";
 
     public function __construct($data = array())
     {
@@ -82,7 +83,7 @@ class ErrormatorClient
             )
         );
         curl_setopt($this->curl, CURLOPT_HEADER, true);
-        $response = $this->sendCurlRequest($this->scheme . "://api.errormator.com/api/logs?protocol_version=" . $this->apiVersion, $data);
+        $response = $this->sendCurlRequest($this->scheme . "://".$this->url."/logs?protocol_version=" . $this->apiVersion, $data);
         curl_setopt($this->curl, CURLOPT_HEADER, false);
         if ($this->debug === true)
         {
@@ -142,7 +143,7 @@ class ErrormatorClient
             }
             if ($this->scheme)
             {
-                $return = $this->sendCurlRequest($this->scheme . "://api.errormator.com/api/slow_reports?protocol_version=" . $this->apiVersion, $data);
+                $return = $this->sendCurlRequest($this->scheme . "://".$this->url."/slow_reports?protocol_version=" . $this->apiVersion, $data);
             }
         }
         return $return;
@@ -176,7 +177,7 @@ class ErrormatorClient
             }
             if ($this->scheme)
             {
-                $return = $this->sendCurlRequest($this->scheme . "://api.errormator.com/api/reports?protocol_version=" . $this->apiVersion, $data);
+                $return = $this->sendCurlRequest($this->scheme . "://".$this->url."/reports?protocol_version=" . $this->apiVersion, $data);
             }
         }
         return $return;
@@ -196,7 +197,7 @@ class ErrormatorClient
             }
             if ($this->scheme)
             {
-                $return = $this->sendCurlRequest($this->scheme . "://api.errormator.com/api/logs?protocol_version=" . $this->apiVersion, $data);
+                $return = $this->sendCurlRequest($this->scheme . "://".$this->url."/logs?protocol_version=" . $this->apiVersion, $data);
             }
         }
         return $return;
@@ -233,6 +234,16 @@ class ErrormatorClient
     public function setClient($name)
     {
         return $this->client = $name;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function setUrl($url)
+    {
+        return $this->url = $url;
     }
 
 }
